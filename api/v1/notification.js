@@ -20,11 +20,18 @@ app.post('/subscribe', (req, res) => {
 });
 
 app.post('/sendNotification', (req, res) => {
+  const { title, body, icon, password } = req.body;
+
+  // Check password
+  if (password !== 'GoogleChrome1') {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
   const notificationPayload = {
     notification: {
-      title: 'New Notification',
-      body: 'This is the body of the notification',
-      icon: 'assets/icons/icon-512x512.png',
+      title,
+      body,
+      icon,
     },
   };
 
@@ -37,5 +44,6 @@ app.post('/sendNotification', (req, res) => {
 
   Promise.all(promises).then(() => res.sendStatus(200));
 });
+
 
 app.listen(3000, () => console.log('Server started on port 3000'));
