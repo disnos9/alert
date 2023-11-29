@@ -8,7 +8,7 @@ navigator.serviceWorker.ready.then(function(registration) {
     if (existedSubscription === null) {
       console.log('No subscription detected, make a request.');
       registration.pushManager.subscribe({
-        applicationServerKey: urlBase64ToUint8Array('BEcD7XFTiPgOOuAxM-GzZj2v0Ckb6epb1Ckjm0J87MjoopuoE8uCrG0mml3aC1UlkbcGFR3NKcUOrsUSNoq_e88'),
+        applicationServerKey: urlBase64ToUint8Array('BPmF6PRCB0xPKjhuT2Dub7hpTuI_MFUuJ1Qp2ciBVs6CAy8lr3ZPeQuMcHHE81ESOFyo6RGX5T58N_A8IMPVg0Q'),
         userVisibleOnly: true,
       }).then(function(newSubscription) {
         console.log('New subscription added.');
