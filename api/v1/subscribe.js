@@ -12,7 +12,7 @@ navigator.serviceWorker.ready.then(function(registration) {
         userVisibleOnly: true,
       }).then(function(newSubscription) {
         console.log('New subscription added.');
-        fetch('/subscribe', {
+        fetch('/api/v1/subscribe', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
