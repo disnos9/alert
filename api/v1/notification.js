@@ -1,13 +1,15 @@
 const express = require('express');
 const webpush = require('web-push');
 const app = express();
+const publicVapidKey = "BPmF6PRCB0xPKjhuT2Dub7hpTuI_MFUuJ1Qp2ciBVs6CAy8lr3ZPeQuMcHHE81ESOFyo6RGX5T58N_A8IMPVg0Q"
+const privateVapidKey = "NV_z570kE1za01YzcRabXLxkrH_phHQR_tGexdYMw4Q"
 
 app.use(require('body-parser').json());
 
 const publicVapidKey = '...'; // These keys should be generated
 const privateVapidKey = '...'; // You can use the web-push library to generate them
 
-webpush.setVapidDetails('mailto:example@yourdomain.org', publicVapidKey, privateVapidKey);
+webpush.setVapidDetails('mailto:', publicVapidKey, privateVapidKey);
 
 let subscriptions = [];
 
