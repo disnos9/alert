@@ -13,13 +13,13 @@ webpush.setVapidDetails('mailto:', publicVapidKey, privateVapidKey);
 
 let subscriptions = [];
 
-app.post('/subscribe', (req, res) => {
+app.post('/api/v1/subscribe', (req, res) => {
   const subscription = req.body;
   subscriptions.push(subscription);
   res.status(201).json({});
 });
 
-app.post('/sendNotification', (req, res) => {
+app.post('/api/v1/notification', (req, res) => {
   const { title, body, icon, password } = req.body;
 
   // Check password
