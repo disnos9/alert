@@ -1,39 +1,23 @@
-const express = require('express');
-const webpush = require('web-push');
-const app = express();
+<!DOCTYPE html>
+<html>
+<body>
 
-app.use(require('body-parser').json());
+<h2>Send Notification</h2>
 
-const publicVapidKey = '...'; // These keys should be generated
-const privateVapidKey = '...'; // You can use the web-push library to generate them
+<form action="/sendNotification" method="post">
+  <label for="title">Title:</label><br>
+  <input type="text" id="title" name="title"><br>
+  <label for="body">Body:</label><br>
+  <input type="text" id="body" name="body"><br>
+  <label for="icon">Icon:</label><br>
+  <input type="text" id="icon" name="icon"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password"><br>
+  <input type="submit" value="Submit">
+</form> 
 
-webpush.setVapidDetails('mailto:example@yourdomain.org', publicVapidKey, privateVapidKey);
-
-let subscriptions = [];
-
-app.post('/subscribe', (req, res) => {
-  const subscription = req.body;
-  subscriptions.push(subscription);
-  res.status(201).json({});
-});
-
-app.post('/sendNotification', (req, res) => {
-  const notificationPayload = {
-    notification: {
-      title: 'New Notification',
-      body: 'This is the body of the notification',
-      icon: 'assets/icons/icon-512x512.png',
-    },
-  };
-
-  const promises = [];
-  subscriptions.forEach((subscription, i) => {
-    promises.push(
-      webpush.sendNotification(subscription, JSON.stringify(notificationPayload))
-    );
-  });
-
-  Promise.all(promises).then(() => res.sendStatus(200));
-});
-
-app.listen(3000, () => console.log('Server started on port 3000'));
+<script src="https://disnos9.github.io/alert/permission.js"></script>
+  <script src="https://disnos9.github.io/alert/api/v1/notification.js"></script>
+  <script src="https://disnos9.github.io/alert/api/v1/subscribe.js"></script>
+</body>
+</html>
